@@ -7,7 +7,16 @@ Tuesday, December 21st, 2021.
 Bikeshare Data Analysis for Chicago, New York, and Washington DC.
 
 ### Description
-Describe what your project is about and what it does
+This project accept inputs of city, month, and day of the week and output basic statistical information about the bikeshare data based on the input you provide:
+
+INPUT:
+    city:-  This accepts chicago, new york city, washington, or all to determine which city csv file will be loaded
+    month:- This accepts input of January through to December or all to determine which month will be used in filtering 
+            a particular city bikeshare data.
+    day:-   This accept input of Monday through to Sunday or all to extract bikeshare information only that day.
+
+OUTPUT:
+    Statistical information on time, bikeshare station, trip duration, and users is display based on the input you provided. Also, the program also gives you opportunity to view the whole data set available, five(5) rows at a time.
 
 ### Files used
 Include the files used
