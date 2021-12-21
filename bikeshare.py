@@ -36,7 +36,7 @@ def get_filters():
     day = input("Which day do you want to filter by?\t").lower()
     while day not in days:
         day = input(
-            "Wrong input!\n Please enter a valid month name(E.g. {})\t".format(days)).lower()
+            "Wrong input!\n Please enter a valid day-of-the-week name(E.g. {})\t".format(days)).lower()
     print('-'*40)
     return city, month, day
 
@@ -55,13 +55,10 @@ def load_data(city, month, day):
     # TO DO: load city data
     df = pd.read_csv(CITY_DATA[city])
 
-    # To Do: convert start time to datetime
-    df['Start Time'] = pd.to_datetime(df['Start Time'])
-
-    # To Do: create month and dayofweek columns
-    df['month'] = df['Start Time'].dt.month
-    df['month'] = df['month'].apply(lambda x: calendar.month_name[x])
-    df['day_of_week'] = df['Start Time'].dt.weekday_name
+    # To Do: convert start time to datetime and create month and dayofweek columns
+    df['month'] = pd.to_datetime(df['Start Time']).dt.month.apply(
+        lambda x: calendar.month_name[x])
+    df['day_of_week'] = pd.to_datetime(df['Start Time']).dt.day_name()
 
     # TO DO: if month is given filter by month
     if month != 'all':
@@ -94,8 +91,10 @@ def time_stats(df):
     print("The most common day of week is {} and its count is {}\n".format(name, count))
 
     # TO DO: display the most common start hour
-    name = df['Start Time'].dt.hour.value_counts()[0:1].index[0]
-    count = df['Start Time'].dt.hour.value_counts()[0]
+    name = pd.to_datetime(df['Start Time']).dt.hour.value_counts()[
+        0:1].index[0]
+    count = pd.to_datetime(df['Start Time']).dt.hour.value_counts()[
+        0:1].values[0]
     print("The most common start hour is {} and its count is {}\n".format(name, count))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
