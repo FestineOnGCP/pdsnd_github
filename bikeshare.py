@@ -36,7 +36,7 @@ def get_filters():
     day = input("Which day do you want to filter by?\t").lower()
     while day not in days:
         day = input(
-            "Wrong input!\n Please enter a valid month name(E.g. {})\t".format(days)).lower()
+            "Wrong input!\n Please enter a valid day-of-the-week name(E.g. {})\t".format(days)).lower()
     print('-'*40)
     return city, month, day
 
